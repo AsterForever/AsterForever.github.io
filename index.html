@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ASTER FOREVER</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: linear-gradient(to bottom right, #f8fafc, #f0f9ff, #ecf9fd);
+        min-height: 100vh;
+      }
+
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        z-index: 50;
+      }
+
+      .header-container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 1rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .logo-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        background-color: #eeeeee;
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      }
+
+      .logo-icon svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        color: white;
+        fill: white;
+      }
+
+      .logo-text {
+        font-size: 1.25rem;
+        font-weight: 700;
+        background: linear-gradient(to right, #2563eb, #0891b2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .lang-toggle {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        background: #eff6ff;
+        border: none;
+        cursor: pointer;
+        font-weight: 500;
+        color: #2563eb;
+        transition: background-color 0.2s;
+      }
+
+      .lang-toggle:hover {
+        background: #dbeafe;
+      }
+
+      .lang-icon {
+        width: 1.25rem;
+        height: 1.25rem;
+      }
+
+      main {
+        padding-top: 8rem;
+        padding-bottom: 5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+
+      .hero {
+        text-align: center;
+        margin-bottom: 5rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(2rem, 8vw, 4rem);
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(to right, #2563eb, #06b6d4, #2563eb);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1.2;
+      }
+
+      .hero p {
+        font-size: 1.35rem;
+        color: #4b5563;
+        margin-bottom: 1rem;
+      }
+
+      .hero .tagline {
+        font-size: 1.15rem;
+        color: #6b7280;
+        font-style: italic;
+      }
+
+      .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 4rem;
+      }
+
+      .feature-card {
+        background: white;
+        border-radius: 1rem;
+        padding: 2rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s;
+      }
+
+      .feature-card:hover {
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        transform: translateY(-8px);
+      }
+
+      .feature-icon {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 0.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+
+      .feature-icon.permanent {
+        background: linear-gradient(to bottom right, #4ade80, #10b981);
+      }
+
+      .feature-icon.time {
+        background: linear-gradient(to bottom right, #60a5fa, #06b6d4);
+      }
+
+      .feature-icon.stable {
+        background: linear-gradient(to bottom right, #fbbf24, #f59e0b);
+      }
+
+      .feature-icon svg {
+        width: 2rem;
+        height: 2rem;
+        color: white;
+      }
+
+      .feature-card h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 1rem;
+      }
+
+      .feature-card p {
+        color: #4b5563;
+        line-height: 1.6;
+      }
+
+      .cta-container {
+        text-align: center;
+      }
+
+      .cta-button {
+        padding: 1rem 3rem;
+        background: linear-gradient(to right, #2563eb, #06b6d4);
+        color: white;
+        border: none;
+        border-radius: 9999px;
+        font-size: 1.125rem;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        transition: all 0.2s;
+      }
+
+      .cta-button:hover {
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+        transform: scale(1.05);
+      }
+
+      footer {
+        background: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid #e5e7eb;
+        padding: 2rem;
+        text-align: center;
+        color: #4b5563;
+      }
+
+      @media (max-width: 768px) {
+        .header-container {
+          padding: 1rem;
+        }
+
+        .logo-text {
+          font-size: 1rem;
+        }
+
+        .lang-toggle {
+          padding: 0.4rem 0.8rem;
+          font-size: 0.875rem;
+        }
+
+        main {
+          padding-top: 7rem;
+        }
+
+        .hero {
+          margin-bottom: 3rem;
+        }
+
+        .features {
+          gap: 1.5rem;
+        }
+
+        .feature-card {
+          padding: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header-container">
+        <div class="logo">
+          <div class="logo-icon">
+            <img src="aster.jpg" alt="ASTER Logo" style="width: 2rem" />
+          </div>
+          <span class="logo-text">ASTER</span>
+        </div>
+
+        <button class="lang-toggle" onclick="toggleLanguage()">
+          <svg class="lang-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            <path d="M2 12h20"></path>
+          </svg>
+          <span id="langText">EN</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <div class="hero">
+          <h1 id="heroTitle">ASTER FOREVER</h1>
+          <p class="tagline" id="heroTagline">One-time purchase, lifetime access</p>
+          <p id="heroSubtitle">Multi-instance solution for Windows 7/10/11</p>
+        </div>
+
+        <div class="features">
+          <div class="feature-card">
+            <div class="feature-icon permanent">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                <polyline points="13 2 13 9 20 9"></polyline>
+                <path d="M12 13v6m-3-3h6"></path>
+              </svg>
+            </div>
+            <h3 id="feature1Title">Lifetime Access</h3>
+            <p id="feature1Desc">No subscription, no renewal fees. One purchase unlocks all features forever</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon time">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <h3 id="feature2Title">No Time Modification</h3>
+            <p id="feature2Desc">Avoid changing system time to prevent other software issues caused by time.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon stable">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <h3 id="feature3Title">Stable & Perfect</h3>
+            <p id="feature3Desc">Three years strong, delivering a flawless user experience</p>
+          </div>
+        </div>
+
+        <div class="cta-container">
+          <button class="cta-button" id="ctaButton">BUY IT NOW! (5$/User)</button>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p id="footerText">© 2024 ASTER FOREVER. All rights reserved.</p>
+    </footer>
+
+    <script>
+      const content = {
+        zh: {
+          langText: 'EN',
+          heroTitle: 'ASTER 永久版',
+          heroSubtitle: 'Win7/10/11 一机多开 专业解决方案',
+          heroTagline: '一次购买，终身使用',
+          feature1Title: '永久使用',
+          feature1Desc: '无需订阅，无需续费，一次购买即可永久使用所有功能',
+          feature2Title: '不改时间',
+          feature2Desc: '无需修改系统时间，避免时间不同步导致的其它软件使用问题',
+          feature3Title: '稳定完美',
+          feature3Desc: '三年老牌，稳定可靠，为您提供完美的使用体验',
+          ctaButton: '立即购买！(5$/用户)',
+          footerText: '© 2024 ASTER 永久版. 版权所有.',
+        },
+        en: {
+          langText: '中文',
+          heroTitle: 'ASTER FOREVER',
+          heroSubtitle: 'Multi-instance solution for Windows 7/10/11',
+          heroTagline: 'One-time purchase, lifetime access',
+          feature1Title: 'Lifetime Access',
+          feature1Desc: 'No subscription, no renewal fees. One purchase unlocks all features forever',
+          feature2Title: 'No Time Modification',
+          feature2Desc: 'Avoid changing system time to prevent other software issues caused by time.',
+          feature3Title: 'Stable & Perfect',
+          feature3Desc: 'Three years strong, delivering a flawless user experience',
+          ctaButton: 'BUY IT NOW! (5$/User)',
+          footerText: '© 2024 ASTER FOREVER. All rights reserved.',
+        },
+      };
+
+      let currentLang = 'en';
+
+      function toggleLanguage() {
+        currentLang = currentLang === 'zh' ? 'en' : 'zh';
+        updateContent();
+      }
+
+      function updateContent() {
+        const t = content[currentLang];
+        document.getElementById('langText').textContent = t.langText;
+        document.getElementById('heroTitle').textContent = t.heroTitle;
+        document.getElementById('heroSubtitle').textContent = t.heroSubtitle;
+        document.getElementById('heroTagline').textContent = t.heroTagline;
+        document.getElementById('feature1Title').textContent = t.feature1Title;
+        document.getElementById('feature1Desc').textContent = t.feature1Desc;
+        document.getElementById('feature2Title').textContent = t.feature2Title;
+        document.getElementById('feature2Desc').textContent = t.feature2Desc;
+        document.getElementById('feature3Title').textContent = t.feature3Title;
+        document.getElementById('feature3Desc').textContent = t.feature3Desc;
+        document.getElementById('ctaButton').textContent = t.ctaButton;
+        document.getElementById('footerText').textContent = t.footerText;
+        document.documentElement.lang = currentLang;
+      }
+
+      updateContent();
+    </script>
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/695f95bca48912197b0da194/1jeem1qh9';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+<!--End of Tawk.to Script-->
+  </body>
+</html>
