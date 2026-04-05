@@ -2,8 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ASTER FOREVER</title>
+    <meta name="description" content="Multi-instance solution for Windows 7/10/11" />
+    <meta name="keywords" content="Aster, AsterForever, 托机, 一机多开, multi-instance" />
+    <meta name="author" content="ASTER" />
+    <meta name="robots" content="index, follow" />
     <style>
       * {
         margin: 0;
@@ -394,7 +397,15 @@
       }
 
       updateContent();
+
+      // Add click event to CTA button to open Tawk chat
+      document.getElementById('ctaButton').addEventListener('click', function() {
+        if (typeof Tawk_API !== 'undefined' && Tawk_API.maximize) {
+          Tawk_API.maximize();
+        }
+      });
     </script>
+
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -407,6 +418,6 @@
     s0.parentNode.insertBefore(s1,s0);
     })();
     </script>
-<!--End of Tawk.to Script-->
+    <!--End of Tawk.to Script-->
   </body>
 </html>
