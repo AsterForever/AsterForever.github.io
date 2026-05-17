@@ -136,8 +136,7 @@
       }
 
       .hero-card-media {
-        /* grid-area: media; */
-        /* display: flex; */
+        /* keep desktop layout intact */
         justify-content: flex-end;
       }
 
@@ -191,7 +190,7 @@
 
       .features {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-template-columns: repeat(3, 1fr);
         gap: 1.25rem;
         margin-bottom: 3rem;
       }
@@ -306,18 +305,35 @@
 
         .hero-card {
           grid-template-columns: 1fr;
+          grid-template-areas: "media" "copy";
           gap: 1.5rem;
+          padding: 1rem;
         }
 
         .hero-card-copy {
           text-align: center;
         }
 
+        .hero-card-copy-inner,
+        .hero-card-media-inner {
+          margin: 0 auto;
+          float: none;
+        }
+
+        .hero-card-media {
+          justify-content: center;
+        }
+
         .hero-card-media img {
-          max-width: 100%;
+          max-width: 320px;
+          width: 100%;
+          height: auto;
+          display: block;
+          margin: 0 auto;
         }
 
         .features {
+          grid-template-columns: 1fr;
           gap: 1.5rem;
         }
 
