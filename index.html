@@ -103,8 +103,8 @@
       }
 
       main {
-        padding-top: 8rem;
-        padding-bottom: 5rem;
+        padding-top: 6rem;
+        padding-bottom: 3rem;
         padding-left: 1rem;
         padding-right: 1rem;
       }
@@ -114,20 +114,67 @@
         margin: 0 auto;
       }
 
-      .hero {
-        text-align: center;
-        margin-bottom: 5rem;
+      .hero-card {
+        display: grid;
+        grid-template-columns: minmax(280px, 1fr) minmax(240px, 0.9fr);
+        grid-template-areas: "copy media";
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 3rem;
+        padding: 1.5rem;
       }
 
-      .hero h1 {
-        font-size: clamp(2rem, 8vw, 4rem);
+      .hero-card-copy {
+        grid-area: copy;
+        /* padding: 0.5rem 0.25rem; */
+        text-align: left;
+      }
+
+      .hero-card-copy-inner {
+        margin-right: 8%;
+        float: right;
+      }
+
+      .hero-card-media {
+        /* grid-area: media; */
+        /* display: flex; */
+        justify-content: flex-end;
+      }
+
+      .hero-card-media-inner {
+        margin-left: 5%;
+        float: left;
+      }
+
+      .hero-card-media img {
+        width: 100%;
+        max-width: 380px;
+        border-radius: 1.5rem;
+        box-shadow: 0 16px 32px rgba(15, 23, 42, 0.12);
+        object-fit: cover;
+      }
+
+      .hero-card-copy h1 {
+        font-size: clamp(2rem, 6vw, 3.2rem);
         font-weight: 700;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1rem;
         background: linear-gradient(to right, #2563eb, #06b6d4, #2563eb);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
         line-height: 1.2;
+      }
+
+      .hero-card-copy p {
+        font-size: 1.15rem;
+        color: #4b5563;
+        margin-bottom: 1rem;
+      }
+
+      .hero-card-copy .tagline {
+        font-size: 1.15rem;
+        color: #6b7280;
+        font-style: italic;
       }
 
       .hero p {
@@ -144,15 +191,15 @@
 
       .features {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        margin-bottom: 4rem;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.25rem;
+        margin-bottom: 3rem;
       }
 
       .feature-card {
         background: white;
         border-radius: 1rem;
-        padding: 2rem;
+        padding: 1.5rem;
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         transition: all 0.3s;
       }
@@ -205,15 +252,16 @@
 
       .cta-container {
         text-align: center;
+        margin-bottom: 2rem;
       }
 
       .cta-button {
-        padding: 1rem 3rem;
+        padding: 0.9rem 2.5rem;
         background: linear-gradient(to right, #2563eb, #06b6d4);
         color: white;
         border: none;
         border-radius: 9999px;
-        font-size: 1.125rem;
+        font-size: 1.05rem;
         font-weight: 600;
         cursor: pointer;
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
@@ -229,7 +277,7 @@
         background: rgba(255, 255, 255, 0.5);
         backdrop-filter: blur(10px);
         border-top: 1px solid #e5e7eb;
-        padding: 2rem;
+        padding: 1.25rem 1rem;
         text-align: center;
         color: #4b5563;
       }
@@ -254,6 +302,19 @@
 
         .hero {
           margin-bottom: 3rem;
+        }
+
+        .hero-card {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .hero-card-copy {
+          text-align: center;
+        }
+
+        .hero-card-media img {
+          max-width: 100%;
         }
 
         .features {
@@ -341,10 +402,19 @@
 
     <main>
       <div class="container">
-        <div class="hero">
-          <h1 id="heroTitle">ASTER FOREVER</h1>
-          <p class="tagline" id="heroTagline">One-time purchase, lifetime access</p>
-          <p id="heroSubtitle">Multi-instance solution for Windows 7/10/11</p>
+        <div class="hero-card">
+          <div class="hero-card-copy">
+            <div class="hero-card-copy-inner">
+              <h1 id="heroTitle">ASTER FOREVER</h1>
+              <p class="tagline" id="heroTagline">One-time purchase, lifetime access</p>
+              <p id="heroSubtitle">Multi-instance solution for Windows 7/10/11</p>
+            </div>
+          </div>
+          <div class="hero-card-media">
+            <div class="hero-card-media-inner">
+              <img src="preview.jpg" alt="ASTER preview showcase" />
+            </div>
+          </div>
         </div>
 
         <div class="features">
