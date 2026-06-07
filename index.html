@@ -252,24 +252,65 @@
       .cta-container {
         text-align: center;
         margin-bottom: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
       }
 
       .cta-button {
-        padding: 0.9rem 2.5rem;
-        background: linear-gradient(to right, #2563eb, #06b6d4);
+        display: inline-flex;
+        align-items: center;
+        padding: 0rem 2.5rem;
+        background-color: #1DA1F2;
         color: white;
         border: none;
         border-radius: 9999px;
+        font-family: inherit;
         font-size: 1.05rem;
         font-weight: 600;
+        line-height: 1;
         cursor: pointer;
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         transition: all 0.2s;
+        height: 50px;
       }
 
       .cta-button:hover {
         box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
         transform: scale(1.05);
+      }
+
+      .twitter-follow-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0rem 2.5rem;
+        background: #1DA1F2;
+        color: white;
+        border: none;
+        border-radius: 9999px;
+        font-family: inherit;
+        font-size: 1.05rem;
+        font-weight: 600;
+        line-height: 1;
+        cursor: pointer;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        transition: all 0.2s;
+        text-decoration: none;
+        height: 50px;
+      }
+
+      .twitter-follow-btn:hover {
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+        transform: scale(1.05);
+      }
+
+      .twitter-follow-btn svg {
+        width: 1.25rem;
+        height: 1.25rem;
       }
 
       footer {
@@ -469,13 +510,19 @@
         </div>
 
         <div class="cta-container">
+          <a href="https://x.com/AsterForever_12" class="twitter-follow-btn" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.6l-5.165-6.75-5.868 6.75h-3.308l7.732-8.835L.424 2.25h6.738l4.866 6.32L17.898 2.25h.346zm-1.106 17.92h1.828L5.283 4.126H3.354L17.138 20.17z"></path>
+            </svg>
+            <span id="followText">Follow Twitter</span>
+          </a>
           <button class="cta-button" id="ctaButton">BUY IT NOW! (5$/User)</button>
         </div>
       </div>
     </main>
 
     <footer>
-      <p id="footerText">© 2024 ASTER FOREVER. All rights reserved.</p>
+      <p id="footerText">© FROM 2024 ASTER FOREVER. All rights reserved.</p>
     </footer>
 
     <script>
@@ -509,8 +556,9 @@
           feature2Desc: '无需修改系统时间，避免时间不同步导致的其它软件使用问题',
           feature3Title: '稳定完美',
           feature3Desc: '三年老牌，稳定可靠，为您提供完美的使用体验',
+          followText: '关注 Twitter',
           ctaButton: '立即购买！(5$/用户)',
-          footerText: '© 2024 ASTER 永久版. 版权所有.',
+          footerText: '© 始于 2024 ASTER 永久版. 版权所有.',
         },
         en: {
           langText: '中文',
@@ -523,8 +571,9 @@
           feature2Desc: 'Avoid changing system time to prevent other software issues caused by time.',
           feature3Title: 'Stable & Perfect',
           feature3Desc: 'Three years strong, delivering a flawless user experience',
+          followText: 'Follow Twitter',
           ctaButton: 'BUY IT NOW! (5$/User)',
-          footerText: '© 2024 ASTER FOREVER. All rights reserved.',
+          footerText: '© FROM 2024 ASTER FOREVER. All rights reserved.',
         },
       };
 
@@ -547,6 +596,7 @@
         document.getElementById('feature2Desc').textContent = t.feature2Desc;
         document.getElementById('feature3Title').textContent = t.feature3Title;
         document.getElementById('feature3Desc').textContent = t.feature3Desc;
+        document.getElementById('followText').textContent = t.followText;
         document.getElementById('ctaButton').textContent = t.ctaButton;
         document.getElementById('footerText').textContent = t.footerText;
         document.documentElement.lang = currentLang;
